@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Button } from 'react-bootstrap';
-import blogs from '../blogs';
 
 const BlogScreen = ({ match }) => {
-	const blog = blogs.find((p) => p._id === match.params.id);
+	const [blog, setBlog] = useState({});
+
+	useEffect(() => {
+		const fetchBlog = async () => {
+			const { data } = await axios.get(`/api/blogs/${match.params.id}`);
+
+			setBlog(data);
+		};
+
+		fetchBlog();
+	}, []);
 
 	return (
 		<>
