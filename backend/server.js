@@ -1,5 +1,8 @@
-const express = require('express');
-const blogs = require('./data/blogs');
+import express from 'express';
+import dotenv from 'dotenv';
+import blogs from './data/blogs.js';
+
+dotenv.config();
 
 const app = express();
 
@@ -16,4 +19,6 @@ app.get('/api/blogs/:id', (req, res) => {
 	res.json(blog);
 });
 
-app.listen(5000, console.log('Server running on port 5000'));
+const PORT = process.env.NODE.PORT || 5000;
+
+app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`));
