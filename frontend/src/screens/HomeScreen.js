@@ -1,31 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 import Blog from '../components/Blog';
+import { listBlogs } from '../actions/blogActions';
 
 const HomeScreen = () => {
-	const [blogs, setBlogs] = useState([]);
+	const dispatch = useDispatch();
+
+	const blogList = useSelector((state) => state.blogList);
+	const { loading, error, blogs } = blogList;
 
 	useEffect(() => {
-		const fetchBlogs = async () => {
-			const { data } = await axios.get('/api/blogs');
-
-			setBlogs(data);
-		};
-
-		fetchBlogs();
-	}, []);
+		dispatch(listBlogs());
+	}, [dispatch]);
 
 	return (
 		<>
 			<Container>
-				<Row className="cards">
-					{blogs.map((blog) => (
-						<Col className="cards" key={blog._id} sm={2} md={2} lg={2} xl={2}>
-							<Blog blog={blog} />
-						</Col>
-					))}
-				</Row>
+				{loading ? (
+					<h2>Loading</h2>
+				) : error ? (
+					<h3>{error}</h3>
+				) : (
+					<Row className="cards">
+						{blogs.map((blog) => (
+							<Col className="cards" key={blog._id} sm={2} md={2} lg={2} xl={2}>
+								<Blog blog={blog} />
+							</Col>
+						))}
+					</Row>
+				)}
 			</Container>
 		</>
 	);
