@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 import Blog from '../components/Blog';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 import { listBlogs } from '../actions/blogActions';
 
 const HomeScreen = () => {
@@ -18,9 +20,9 @@ const HomeScreen = () => {
 		<>
 			<Container>
 				{loading ? (
-					<h2>Loading</h2>
+					<Loader />
 				) : error ? (
-					<h3>{error}</h3>
+					<Message variant="primary">{error}</Message>
 				) : (
 					<Row className="cards">
 						{blogs.map((blog) => (
