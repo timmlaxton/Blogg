@@ -1,13 +1,21 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { blogListReducer, blogDetailsReducer, blogDeleteReducer } from './reducers/blogReducers';
+import {
+	blogListReducer,
+	blogDetailsReducer,
+	blogDeleteReducer,
+	blogCreateReducer,
+	blogUpdateReducer
+} from './reducers/blogReducers';
 import { userLoginReducer } from './reducers/userReducers';
 
 const reducer = combineReducers({
 	blogList: blogListReducer,
 	blogDetails: blogDetailsReducer,
 	blogDelete: blogDeleteReducer,
+	blogCreate: blogCreateReducer,
+	blogUpdate: blogUpdateReducer,
 	userLogin: userLoginReducer
 });
 

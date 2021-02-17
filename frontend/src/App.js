@@ -7,6 +7,7 @@ import HomeScreen from './screens/HomeScreen';
 import BlogScreen from './screens/BlogScreen.js';
 import LoginScreen from './screens/LoginScreen';
 import BlogListScreen from './screens/BlogListScreen';
+import BlogEditScreen from './screens/BlogEditScreen';
 
 const App = () => {
 	return (
@@ -17,7 +18,8 @@ const App = () => {
 					<Route path="/" component={HomeScreen} exact />
 					<Route path="/blog/:id" component={BlogScreen} />
 					<Route path="/admin/bloglist" component={BlogListScreen} exact />
-
+					<Route path="/admin/blog/:id/edit" component={BlogEditScreen} />
+					<Route path="/admin/blog/create" component={BlogEditScreen} />
 					<Route path="/login" component={LoginScreen} />
 				</Container>
 			</main>

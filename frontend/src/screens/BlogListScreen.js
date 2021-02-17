@@ -4,7 +4,7 @@ import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listBlogs, deleteBlog } from '../actions/blogActions';
+import { listBlogs, deleteBlog, createBlog } from '../actions/blogActions';
 
 const BlogListScreen = ({ history, match }) => {
 	const dispatch = useDispatch();
@@ -18,13 +18,19 @@ const BlogListScreen = ({ history, match }) => {
 	const blogDelete = useSelector((state) => state.blogDelete);
 	const { loading: loadingDelete, error: errorDelete, success: successDelete } = blogDelete;
 
+	const blogCreate = useSelector((state) => state.blogCreate);
+	const { loading: loadingCreate, error: errorCreate, success: successCreate } = blogCreate;
+
 	useEffect(() => {
 		if (!userInfo && userInfo.isAdmin) {
 			history.push('/login');
+		}
+		if (successCreate) {
+			history.push(`admin/blog/${createBlog._id}/edit`);
 		} else {
 			dispatch(listBlogs());
 		}
-	}, [dispatch, history, userInfo, successDelete]);
+	}, [dispatch, history, userInfo, successDelete, successCreate]);
 
 	const deleteHandler = (id) => {
 		if (window.confirm('Are you sure')) {
@@ -33,7 +39,7 @@ const BlogListScreen = ({ history, match }) => {
 	};
 
 	const createBlogHandler = () => {
-		history.push(`/admin/podcast/create`);
+		history.push(`/admin/blog/create`);
 	};
 
 	return (
@@ -50,6 +56,8 @@ const BlogListScreen = ({ history, match }) => {
 			</Row>
 			{loadingDelete && <Loader />}
 			{errorDelete && <Message variant="danger">{errorDelete}</Message>}
+			{loadingCreate && <Loader />}
+			{errorCreate && <Message variant="danger">{errorCreate}</Message>}
 			{loading && <Loader />}
 			{error && <Message variant="danger">{error}</Message>}
 			{loading ? (
