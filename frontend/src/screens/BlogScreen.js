@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { Row, Col, Image, ListGroup } from 'react-bootstrap';
+import { Row, Col, Image, ListGroup, Button } from 'react-bootstrap';
 import { listBlogDetails } from '../actions/blogActions';
 
 const BlogScreen = ({ match }) => {
@@ -18,7 +18,7 @@ const BlogScreen = ({ match }) => {
 
 	return (
 		<>
-			<Link Button className="btn btn-light" to="/">
+			<Link className="btn btn-light my-3" to="/">
 				Go Back
 			</Link>
 			{loading ? (
@@ -27,14 +27,13 @@ const BlogScreen = ({ match }) => {
 				<Message variant="danger">{error}</Message>
 			) : (
 				<Row>
-					<Col>
-						<Image className="blog-image" src={blog.image} alt={blog.title} fluid />
-					</Col>
+					<Image src={blog.image} alt={blog.title} fluid />
+
 					<Col>
 						<ListGroup variant="flush">
 							<ListGroup.Item>
-								<h2 className="blog-heading">{blog.heading}</h2>
-								<h4 className="blog-post">{blog.post}</h4>
+								<h2>{blog.heading}</h2>
+								<h4>{blog.post}</h4>
 							</ListGroup.Item>
 						</ListGroup>
 					</Col>

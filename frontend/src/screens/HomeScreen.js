@@ -26,7 +26,7 @@ const HomeScreen = () => {
 				) : (
 					<Row className="cards">
 						{blogs.map((blog) => (
-							<Col className="cards" key={blog._id} sm={2} md={2} lg={2} xl={2}>
+							<Col className="cards" key={blog._id} sm={4} md={4} lg={3} xl={3}>
 								<Blog blog={blog} />
 							</Col>
 						))}

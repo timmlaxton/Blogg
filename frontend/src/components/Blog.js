@@ -4,13 +4,13 @@ import { Card } from 'react-bootstrap';
 
 const Blog = ({ blog }) => {
 	return (
-		<Card style={{ width: '20rem' }}>
+		<Card className="my-3 p-3">
 			<Link to={`/blog/${blog._id}`}>
-				<Card.Img className="card-image" src={blog.image} variant="top" />
+				<Card.Img src={blog.image} variant="top" />
 			</Link>
 			<Card.Body>
 				<Link to={`/blog/${blog._id}`}>
-					<Card.Title className="card-heading">
+					<Card.Title as="div" className="mb-1">
 						<strong>{blog.heading}</strong>
 					</Card.Title>
 				</Link>

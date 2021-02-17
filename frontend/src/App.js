@@ -4,7 +4,9 @@ import { Container } from 'react-bootstrap';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomeScreen from './screens/HomeScreen';
-import BlogScreen from './screens/BlogScreen';
+import BlogScreen from './screens/BlogScreen.js';
+import LoginScreen from './screens/LoginScreen';
+import BlogListScreen from './screens/BlogListScreen';
 
 const App = () => {
 	return (
@@ -14,6 +16,9 @@ const App = () => {
 				<Container>
 					<Route path="/" component={HomeScreen} exact />
 					<Route path="/blog/:id" component={BlogScreen} />
+					<Route path="/admin/bloglist" component={BlogListScreen} exact />
+
+					<Route path="/login" component={LoginScreen} />
 				</Container>
 			</main>
 			<Footer />
