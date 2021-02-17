@@ -4,7 +4,7 @@ import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listBlogs } from '../actions/blogActions';
+import { listBlogs, deleteBlog } from '../actions/blogActions';
 
 const BlogListScreen = ({ history, match }) => {
 	const dispatch = useDispatch();
@@ -15,16 +15,20 @@ const BlogListScreen = ({ history, match }) => {
 	const userLogin = useSelector((state) => state.userLogin);
 	const { userInfo } = userLogin;
 
+	const blogDelete = useSelector((state) => state.blogDelete);
+	const { loading: loadingDelete, error: errorDelete, success: successDelete } = blogDelete;
+
 	useEffect(() => {
-		if (userInfo && userInfo.isAdmin) {
-			dispatch(listBlogs());
-		} else {
+		if (!userInfo && userInfo.isAdmin) {
 			history.push('/login');
+		} else {
+			dispatch(listBlogs());
 		}
-	}, [dispatch, history, userInfo]);
+	}, [dispatch, history, userInfo, successDelete]);
 
 	const deleteHandler = (id) => {
 		if (window.confirm('Are you sure')) {
+			dispatch(deleteBlog(id));
 		}
 	};
 
@@ -44,8 +48,8 @@ const BlogListScreen = ({ history, match }) => {
 					</Button>
 				</Col>
 			</Row>
-			{loading && <Loader />}
-			{error && <Message variant="danger">{error}</Message>}
+			{loadingDelete && <Loader />}
+			{errorDelete && <Message variant="danger">{errorDelete}</Message>}
 			{loading && <Loader />}
 			{error && <Message variant="danger">{error}</Message>}
 			{loading ? (

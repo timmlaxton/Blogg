@@ -24,4 +24,19 @@ const getBlogById = asyncHandler(async (req, res) => {
 	}
 });
 
-export { getBlogs, getBlogById };
+// Delete  Blog
+// DELETE /api/blogs/:id
+// Private
+const deleteBlog = asyncHandler(async (req, res) => {
+	const blog = await Blog.findById(req.params.id);
+
+	if (blog) {
+		await blog.remove();
+		res.json({ message: 'Blog has been deleted' });
+	} else {
+		res.status(404);
+		throw new Error('Blog not found');
+	}
+});
+
+export { getBlogs, getBlogById, deleteBlog };
