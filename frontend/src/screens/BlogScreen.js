@@ -54,9 +54,12 @@ const BlogScreen = ({ match }) => {
 
 						<Col>
 							<ListGroup variant="flush">
-								<ListGroup.Item>
+								<ListGroup.Item key={blog._id}>
 									<h2>{blog.heading}</h2>
-									<h4>{blog.post}</h4>
+									{blog.post}
+									<br />
+									<br />
+									<p>{blog.createdAt}</p>
 								</ListGroup.Item>
 							</ListGroup>
 						</Col>

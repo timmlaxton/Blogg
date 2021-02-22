@@ -170,10 +170,12 @@ const BlogEditScreen = ({ match, history }) => {
 							<Form.Label>Post</Form.Label>
 							<Form.Control
 								as="textarea"
+								contenteditable
+								rows={10}
+								wrap="hard"
 								placeholder="Write ya post"
 								value={post}
 								onChange={(e) => setPost(e.target.value)}
-								rows={10}
 							></Form.Control>
 						</Form.Group>
 

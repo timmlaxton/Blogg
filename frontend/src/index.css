@@ -21,6 +21,36 @@ h3 {
 	width: 100%;
 }
 
+.card-img {
+	width: auto;
+	height: 10%;
+}
+
 .card-title {
 	position: left;
+}
+
+.search-bar {
+	margin-left: 250px;
+}
+
+.jumbotron {
+	margin-top: 20px;
+	padding: 0rem, 0rem;
+	background-color: white;
+}
+
+.jumbo-image {
+	/* width: 600px;
+	height: 500px; */
+	margin-left: 140px;
+	margin-bottom: 40px;
+}
+
+.main-header {
+	text-align: center;
+}
+
+.main-paragraph {
+	text-align: center;
 }
