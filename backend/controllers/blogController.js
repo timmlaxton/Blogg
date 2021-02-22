@@ -77,4 +77,29 @@ const updateBlog = asyncHandler(async (req, res) => {
 	}
 });
 
-export { getBlogs, getBlogById, deleteBlog, createBlog, updateBlog };
+// Create new Review
+// POST /api/blogs/:id/review
+// Private
+
+const createBlogReview = asyncHandler(async (req, res) => {
+	const { comment } = req.body;
+
+	const blog = await Blog.findById(req.params.id);
+
+	const review = {
+		name: req.user.name,
+		comment,
+		user: req.user._id
+	};
+
+	blog.reviews.push(review);
+
+	blog.numReviews = blog.reviews.length;
+
+	await blog.save();
+	res.status(201).json({ message: 'Comment added' });
+
+	throw new Error('Blog not found');
+});
+
+export { getBlogs, getBlogById, deleteBlog, createBlog, updateBlog, createBlogReview };

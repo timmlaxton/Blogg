@@ -15,7 +15,10 @@ import {
 	BLOG_CREATE_FAIL,
 	BLOG_UPDATE_REQUEST,
 	BLOG_UPDATE_SUCCESS,
-	BLOG_UPDATE_FAIL
+	BLOG_UPDATE_FAIL,
+	BLOG_CREATE_REVIEW_REQUEST,
+	BLOG_CREATE_REVIEW_SUCCESS,
+	BLOG_CREATE_REVIEW_FAIL
 } from '../constants/blogConstants';
 
 export const listBlogs = () => async (dispatch) => {
@@ -138,6 +141,36 @@ export const updateBlog = (blog) => async (dispatch, getState) => {
 	} catch (error) {
 		dispatch({
 			type: BLOG_UPDATE_FAIL,
+			payload: error.response && error.response.data.message ? error.response.data.message : error.message
+		});
+	}
+};
+
+export const createBlogReview = (blogId, review) => async (dispatch, getState) => {
+	try {
+		dispatch({
+			type: BLOG_CREATE_REVIEW_REQUEST
+		});
+
+		const {
+			userLogin: { userInfo }
+		} = getState();
+
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${userInfo.token}`
+			}
+		};
+
+		await axios.post(`/api/blogs/${blogId}/reviews`, review, config);
+
+		dispatch({
+			type: BLOG_CREATE_REVIEW_SUCCESS
+		});
+	} catch (error) {
+		dispatch({
+			type: BLOG_CREATE_REVIEW_FAIL,
 			payload: error.response && error.response.data.message ? error.response.data.message : error.message
 		});
 	}

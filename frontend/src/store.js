@@ -6,7 +6,8 @@ import {
 	blogDetailsReducer,
 	blogDeleteReducer,
 	blogCreateReducer,
-	blogUpdateReducer
+	blogUpdateReducer,
+	blogCommentCreateReducer
 } from './reducers/blogReducers';
 import { userLoginReducer } from './reducers/userReducers';
 
@@ -16,7 +17,8 @@ const reducer = combineReducers({
 	blogDelete: blogDeleteReducer,
 	blogCreate: blogCreateReducer,
 	blogUpdate: blogUpdateReducer,
-	userLogin: userLoginReducer
+	userLogin: userLoginReducer,
+	blogCommentCreate: blogCommentCreateReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
