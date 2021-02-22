@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import HomeScreen from './screens/HomeScreen';
 import BlogScreen from './screens/BlogScreen.js';
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen';
 import BlogListScreen from './screens/BlogListScreen';
 import BlogEditScreen from './screens/BlogEditScreen';
 
@@ -22,6 +23,7 @@ const App = () => {
 					<Route path="/admin/blog/:id/edit" component={BlogEditScreen} />
 					<Route path="/admin/blog/create" component={BlogEditScreen} />
 					<Route path="/login" component={LoginScreen} />
+					<Route path="/register" component={RegisterScreen} />
 				</Container>
 			</main>
 			<Footer />

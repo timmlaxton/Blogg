@@ -9,7 +9,7 @@ import {
 	blogUpdateReducer,
 	blogCommentCreateReducer
 } from './reducers/blogReducers';
-import { userLoginReducer } from './reducers/userReducers';
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
 
 const reducer = combineReducers({
 	blogList: blogListReducer,
@@ -17,8 +17,9 @@ const reducer = combineReducers({
 	blogDelete: blogDeleteReducer,
 	blogCreate: blogCreateReducer,
 	blogUpdate: blogUpdateReducer,
+	blogCommentCreate: blogCommentCreateReducer,
 	userLogin: userLoginReducer,
-	blogCommentCreate: blogCommentCreateReducer
+	userRegister: userRegisterReducer
 });
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
