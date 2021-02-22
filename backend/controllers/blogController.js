@@ -52,13 +52,15 @@ const deleteBlog = asyncHandler(async (req, res) => {
 // POST /api/blogs/:id
 // Private
 const createBlog = asyncHandler(async (req, res) => {
-	const { heading, title, image, post } = req.body;
+	const { heading, title, image, post, featured, category } = req.body;
 	const blog = new Blog({
 		user: req.user._id,
 		heading,
 		title,
 		image,
-		post
+		post,
+		featured,
+		category
 	});
 
 	const createdBlog = await blog.save();
@@ -69,10 +71,15 @@ const createBlog = asyncHandler(async (req, res) => {
 // PUT /api/blogs/:id
 // Private
 const updateBlog = asyncHandler(async (req, res) => {
-	const { heading, title, image, post } = req.body;
+	const { heading, title, image, post, category, featured } = req.body;
+
 	const blog = await Blog.findById(req.params.id);
 	if (blog) {
-		(blog.heading = heading), (blog.title = title), (blog.post = post);
+		(blog.heading = heading),
+			(blog.title = title),
+			(blog.post = post),
+			(blog.category = category),
+			(blog.featured = featured);
 
 		if (image) {
 			blog.image = image;

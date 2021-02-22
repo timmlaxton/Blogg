@@ -8,7 +8,6 @@ import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
 import { listBlogDetails, updateBlog, createBlog } from '../actions/blogActions';
 import { BLOG_UPDATE_RESET, BLOG_CREATE_RESET } from '../constants/blogConstants';
-import { BLOG_UPDATE_REQUEST } from '../constants/blogConstants';
 
 const BlogEditScreen = ({ match, history }) => {
 	const blogId = match.params.id;
@@ -20,6 +19,7 @@ const BlogEditScreen = ({ match, history }) => {
 	const [imageUrl, setImageUrl] = useState('');
 	const [imagePreview, setImagePreview] = useState(null);
 	const [uploading, setUploading] = useState(false);
+	const [category, setCategory] = useState(false);
 	const [featured, setFeatured] = useState(false);
 
 	const dispatch = useDispatch();
@@ -46,6 +46,8 @@ const BlogEditScreen = ({ match, history }) => {
 			setHeading(blog.heading);
 			setTitle(blog.title);
 			setPost(blog.post);
+			setCategory(blog.category);
+			setFeatured(blog.featured);
 			setImagePreview(blog.image);
 		}
 	}, [dispatch, blogId, blog, history, successUpdate, isCreateBlogMode]);
@@ -100,6 +102,8 @@ const BlogEditScreen = ({ match, history }) => {
 			heading,
 			title,
 			post,
+			category,
+			featured,
 			...(finalImage && { image: finalImage })
 		};
 
@@ -142,6 +146,16 @@ const BlogEditScreen = ({ match, history }) => {
 							></Form.Control>
 						</Form.Group>
 
+						<Form.Group controlId="category">
+							<Form.Label>Select Category</Form.Label>
+							<Form.Control as="select" onChange={(e) => setCategory(e.target.value)}>
+								<option value="Sport">Sport</option>
+								<option value="Science">Science</option>
+								<option value="Money">Money</option>
+								<option value="Music">Music</option>
+							</Form.Control>
+						</Form.Group>
+
 						<Form.Group controlId="image">
 							<Form.Label>Image</Form.Label>
 							<Form.Control
@@ -170,7 +184,6 @@ const BlogEditScreen = ({ match, history }) => {
 							<Form.Label>Post</Form.Label>
 							<Form.Control
 								as="textarea"
-								contenteditable
 								rows={10}
 								wrap="hard"
 								placeholder="Write ya post"

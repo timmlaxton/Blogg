@@ -34,6 +34,14 @@ const blogSchema = mongoose.Schema(
 			type: String,
 			required: true
 		},
+		featured: {
+			type: Boolean,
+			default: false
+		},
+		category: {
+			type: String,
+			required: true
+		},
 		post: {
 			type: String,
 			required: true
