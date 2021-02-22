@@ -15,6 +15,7 @@ const App = () => {
 			<Header />
 			<main>
 				<Container>
+					<Route path="/search/:keyword" component={HomeScreen} />
 					<Route path="/" component={HomeScreen} exact />
 					<Route path="/blog/:id" component={BlogScreen} />
 					<Route path="/admin/bloglist" component={BlogListScreen} exact />

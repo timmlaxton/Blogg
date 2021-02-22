@@ -6,7 +6,16 @@ import Blog from '../models/blogModel.js';
 // Public
 
 const getBlogs = asyncHandler(async (req, res) => {
-	const blogs = await Blog.find({});
+	const keyword = req.query.keyword
+		? {
+				heading: {
+					$regex: req.query.keyword,
+					$options: 'i'
+				}
+		  }
+		: {};
+
+	const blogs = await Blog.find({ ...keyword });
 	res.json(blogs);
 });
 

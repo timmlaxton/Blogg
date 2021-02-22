@@ -6,15 +6,16 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listBlogs } from '../actions/blogActions';
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+	const keyword = match.params.keyword;
 	const dispatch = useDispatch();
 
 	const blogList = useSelector((state) => state.blogList);
 	const { loading, error, blogs } = blogList;
 
 	useEffect(() => {
-		dispatch(listBlogs());
-	}, [dispatch]);
+		dispatch(listBlogs(keyword));
+	}, [dispatch, keyword]);
 
 	return (
 		<>

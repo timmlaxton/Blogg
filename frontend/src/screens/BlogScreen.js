@@ -63,8 +63,6 @@ const BlogScreen = ({ match }) => {
 					</Row>
 					<Row>
 						<Col md={6}>
-							<h2>Add a comment</h2>
-
 							{errorBlogReview && <Message variant="danger">{errorBlogReview}</Message>}
 							<ListGroup variant="flush">
 								{blog.reviews.map((review) => (
@@ -79,7 +77,6 @@ const BlogScreen = ({ match }) => {
 									{userInfo ? (
 										<Form onSubmit={submitHandler}>
 											<Form.Group controlId="comment">
-												<Form.Label>Comment</Form.Label>
 												<Form.Control
 													as="textarea"
 													row="3"

@@ -21,11 +21,11 @@ import {
 	BLOG_CREATE_REVIEW_FAIL
 } from '../constants/blogConstants';
 
-export const listBlogs = () => async (dispatch) => {
+export const listBlogs = (keyword = '') => async (dispatch) => {
 	try {
 		dispatch({ type: BLOG_LIST_REQUEST });
 
-		const { data } = await axios.get('/api/blogs');
+		const { data } = await axios.get(`/api/blogs?keyword=${keyword}`);
 
 		dispatch({
 			type: BLOG_LIST_SUCCESS,
