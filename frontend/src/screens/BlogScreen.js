@@ -38,6 +38,8 @@ const BlogScreen = ({ match }) => {
 		);
 	};
 
+	console.log('Blog', blog);
+
 	return (
 		<>
 			<Link className="btn btn-light my-3" to="/">
@@ -48,59 +50,64 @@ const BlogScreen = ({ match }) => {
 			) : error ? (
 				<Message variant="danger">{error}</Message>
 			) : (
-				<>
-					<Row>
-						<Image src={blog.image} alt={blog.title} fluid />
+				blog.post && (
+					<>
+						<Row>
+							<Image src={blog.image} alt={blog.title} fluid />
 
-						<Col>
-							<ListGroup variant="flush">
-								<ListGroup.Item key={blog._id}>
-									<h2>{blog.heading}</h2>
-									{blog.post}
-									<br />
-									<br />
-									<p>{blog.createdAt}</p>
-								</ListGroup.Item>
-							</ListGroup>
-						</Col>
-					</Row>
-					<Row>
-						<Col md={6}>
-							{errorBlogReview && <Message variant="danger">{errorBlogReview}</Message>}
-							<ListGroup variant="flush">
-								{blog.reviews.map((review) => (
-									<ListGroup.Item key={review._id}>
-										<strong>{review.name}</strong>
-										<p>{review.createdAt.substring(0, 10)}</p>
-										<p>{review.comment}</p>
+							<Col>
+								<ListGroup variant="flush">
+									<ListGroup.Item key={blog._id}>
+										<h2>{blog.heading}</h2>
+										{blog.post.split('\n').map((text, idx) => {
+											return <p key={idx}>{text}</p>;
+										})}
+										<p>Published: {blog.createdAt.substring(0, 10)}</p>
+										<br />
+										<br />
 									</ListGroup.Item>
-								))}
-								<ListGroup.Item>
-									<h2>Add a comment</h2>
-									{userInfo ? (
-										<Form onSubmit={submitHandler}>
-											<Form.Group controlId="comment">
-												<Form.Control
-													as="textarea"
-													row="3"
-													value={comment}
-													onChange={(e) => setComment(e.target.value)}
-												></Form.Control>
-											</Form.Group>
-											<Button type="submit" variant="primary">
-												Submit Comment
-											</Button>
-										</Form>
-									) : (
-										<Message>
-											<Link to="/login"> Sign In</Link> to add a comment {'  '}
-										</Message>
-									)}
-								</ListGroup.Item>
-							</ListGroup>
-						</Col>
-					</Row>
-				</>
+								</ListGroup>
+							</Col>
+						</Row>
+						<Row>
+							<Col md={6}>
+								<h4>Comments Section</h4>
+								{errorBlogReview && <Message variant="danger">{errorBlogReview}</Message>}
+								<ListGroup variant="flush">
+									{blog.reviews.map((review) => (
+										<ListGroup.Item key={review._id}>
+											<strong>{review.name}</strong>
+											<p>{review.createdAt.substring(0, 10)}</p>
+											<p>{review.comment}</p>
+										</ListGroup.Item>
+									))}
+									<ListGroup.Item>
+										<h2>Add a comment</h2>
+										{userInfo ? (
+											<Form onSubmit={submitHandler}>
+												<Form.Group controlId="comment">
+													<Form.Control
+														as="textarea"
+														row="3"
+														value={comment}
+														onChange={(e) => setComment(e.target.value)}
+													></Form.Control>
+												</Form.Group>
+												<Button type="submit" variant="primary">
+													Submit Comment
+												</Button>
+											</Form>
+										) : (
+											<Message>
+												<Link to="/login"> Sign In</Link> to add a comment {'  '}
+											</Message>
+										)}
+									</ListGroup.Item>
+								</ListGroup>
+							</Col>
+						</Row>
+					</>
+				)
 			)}
 		</>
 	);

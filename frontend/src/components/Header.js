@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap';
-import SearchBar from './SearchBar';
+import SearchBar from '../components/SearchBar';
 import { logout } from '../actions/userActions';
 
 const Header = () => {
@@ -27,9 +27,9 @@ const Header = () => {
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Route render={({ history }) => <SearchBar history={history} />} />
 						<Nav className="ml-auto">
-							<LinkContainer to="/bloglist">
+							{/* <LinkContainer to="/bloglist">
 								<Nav.Link>Blog</Nav.Link>
-							</LinkContainer>
+							</LinkContainer> */}
 							{userInfo ? (
 								<NavDropdown title={userInfo.name} id="username">
 									<LinkContainer to="/">

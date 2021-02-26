@@ -8,11 +8,11 @@ const storage = multer.diskStorage({
 		cb(null, 'uploads/');
 	},
 	filename(req, file, cb) {
-		cb(null, `${file.filedname}-${Date.now()}${path.extname(file.originalname)}`);
+		cb(null, `${file.filename}-${Date.now()}${path.extname(file.originalname)}`);
 	}
 });
 
-function checkFilteType(file, cb) {
+function checkFileType(file, cb) {
 	const filetypes = /jpg|jpeg|png/;
 	const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
 	const mimetype = filetypes.test(file.mimetype);
@@ -27,7 +27,7 @@ function checkFilteType(file, cb) {
 const upload = multer({
 	storage,
 	fileFilter: function (req, file, cb) {
-		checkFilteType(file, cb);
+		checkFileType(file, cb);
 	}
 });
 

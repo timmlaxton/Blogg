@@ -72,6 +72,9 @@ const BlogListScreen = ({ history, match }) => {
 								<td>
 									<strong>{blog.heading}</strong>
 								</td>
+								<td>
+									<strong>{blog.category}</strong>
+								</td>
 
 								<td>
 									<LinkContainer to={`/admin/blog/${blog._id}/edit`}>

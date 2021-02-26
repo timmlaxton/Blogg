@@ -12,8 +12,15 @@ h3 {
 	margin: 0.1rem;
 }
 
+.blog-image {
+	width: 100%;
+	height: 100%;
+	display: block;
+	height: auto;
+}
+
 .card {
-	min-height: 200px;
+	min-height: auto;
 	border: none;
 }
 
@@ -43,7 +50,7 @@ h3 {
 .jumbo-image {
 	width: 600px;
 	height: 500px;
-	margin-left: 140px;
+	margin-left: 200px;
 	margin-bottom: 40px;
 }
 

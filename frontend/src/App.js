@@ -10,7 +10,6 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import BlogListScreen from './screens/BlogListScreen';
 import BlogEditScreen from './screens/BlogEditScreen';
-
 const App = () => {
 	return (
 		<Router>

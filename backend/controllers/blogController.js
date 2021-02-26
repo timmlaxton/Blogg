@@ -8,10 +8,20 @@ import Blog from '../models/blogModel.js';
 const getBlogs = asyncHandler(async (req, res) => {
 	const keyword = req.query.keyword
 		? {
-				heading: {
-					$regex: req.query.keyword,
-					$options: 'i'
-				}
+				$or: [
+					{
+						heading: {
+							$regex: req.query.keyword,
+							$options: 'i'
+						}
+					},
+					{
+						category: {
+							$regex: req.query.keyword,
+							$options: 'i'
+						}
+					}
+				]
 		  }
 		: {};
 
@@ -74,6 +84,7 @@ const updateBlog = asyncHandler(async (req, res) => {
 	const { heading, title, image, post, category, featured } = req.body;
 
 	const blog = await Blog.findById(req.params.id);
+
 	if (blog) {
 		(blog.heading = heading),
 			(blog.title = title),

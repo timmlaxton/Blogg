@@ -21,11 +21,18 @@ import {
 	BLOG_CREATE_REVIEW_FAIL
 } from '../constants/blogConstants';
 
-export const listBlogs = (keyword = '') => async (dispatch) => {
+export const listBlogs = (keyword = '', category = '', featured = false) => async (dispatch) => {
 	try {
 		dispatch({ type: BLOG_LIST_REQUEST });
 
-		const { data } = await axios.get(`/api/blogs?keyword=${keyword}`);
+		const { data } = await axios.get(`/api/blogs?keyword=${keyword}&featured=${featured}&category=${category}`);
+
+		// const { data } = await axios.get(`/api/blogs`, {
+		// 	params: {
+		// 		keyword,
+		// 		categories: categories.join(',')
+		// 	}
+		// });
 
 		dispatch({
 			type: BLOG_LIST_SUCCESS,

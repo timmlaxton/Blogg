@@ -185,6 +185,7 @@ const BlogEditScreen = ({ match, history }) => {
 							<Form.Control
 								as="textarea"
 								rows={10}
+								cols={10}
 								wrap="hard"
 								placeholder="Write ya post"
 								value={post}
