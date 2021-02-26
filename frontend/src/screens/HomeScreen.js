@@ -32,8 +32,8 @@ const HomeScreen = ({ match, blog }) => {
 	}, [blogs]);
 
 	useEffect(() => {
-		if (blogSuccess) dispatch(listBlogDetails(match.params.id));
-	}, [dispatch, match, blogSuccess]);
+		dispatch(listBlogDetails(match.params.id));
+	}, [dispatch, match]);
 
 	function getBlogsByCategory(blogs = []) {
 		return blogs.reduce((acc, blog) => {
@@ -91,11 +91,8 @@ const HomeScreen = ({ match, blog }) => {
 							<Blog blog={blog} />
 						</Col>
 					))}
-
 					<Col md={3}>
-						<ListGroup variant="flush">
-							<ListGroup.Item></ListGroup.Item>
-						</ListGroup>
+						<p className="blog-description">swcwe wedvwerv vwdverv vwverv veververv</p>
 					</Col>
 				</Row>
 			)}
