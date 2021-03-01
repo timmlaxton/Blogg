@@ -151,8 +151,9 @@ const BlogEditScreen = ({ match, history }) => {
 							<Form.Control as="select" onChange={(e) => setCategory(e.target.value)}>
 								<option value="Sport">Sport</option>
 								<option value="Science">Science</option>
-								<option value="Money">Money</option>
+								<option value="Books">Books</option>
 								<option value="Music">Music</option>
+								<option value="Games">Games</option>
 							</Form.Control>
 						</Form.Group>
 

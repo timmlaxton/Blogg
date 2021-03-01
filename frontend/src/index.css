@@ -63,7 +63,22 @@ h3 {
 }
 
 .blog-description {
+	margin-top: 150px;
+	margin-left: 50px;
+	width: 600px;
+}
+
+.post-heading {
 	text-align: center;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.category-card-sport {
 	margin-top: 60px;
-	width: 200%;
+	margin-left: 50px;
+}
+
+.cards-row {
+	margin-left: 20px;
 }
